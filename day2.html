@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    .errorMsg {
+        color: red;
+    }
+</style>
+<body>
+
+<!--<div id="container"></div>                                        -->
+
+<!--                                                                  -->
+<!--<script>                                                          -->
+<!--    var paragraph = document.createElement("p");                  -->
+<!--    document.getElementById("container").appendChild(paragraph);  -->
+<!--                                                                  -->
+<!--    var textPara = document.createTextNode("Hover Me");           -->
+<!--    paragraph.appendChild(textPara);                              -->
+<!--                                                                  -->
+<!--    paragraph.onmouseover = function () {                         -->
+<!--        paragraph.style.color = "Blue";                           -->
+<!--    };                                                            -->
+<!--    paragraph.onmouseout = function () {                          -->
+<!--        paragraph.style.color = "Black";                          -->
+<!--                                                                  -->
+<!--                                                                  -->
+<!--    }                                                             -->
+<!--                                                                  -->
+<!--                                                                  -->
+<!--</script>  **********************                                 -->
+
+
+<!--<div id="container">                                                      -->
+<!--    <ul id="list">                                                        -->
+<!--        <li >A list item</li>                                             -->
+<!--                                                                          -->
+<!--    </ul>                                                                 -->
+<!--                                                                          -->
+<!--    <script>                                                              -->
+<!--                                                                          -->
+<!--        var ul= document.getElementById("list");                          -->
+<!--        ul.onclick = function () {                                        -->
+<!--           var newLi = document.createElement("li");                      -->
+<!--           ul.appendChild(newLi);                                         -->
+<!--           var textLi = document.createTextNode("Another list Item");     -->
+<!--           newLi.appendChild(textLi);                                     -->
+<!--        }                                                                 -->
+<!--    </script>                                                             -->
+<!--</div>                                                                    -->
+<!--  *******************************************************************     -->
+
+<!--<div id="container">
+
+
+   <script>
+   //    var anchor = document.createElement("a");
+   //    document.getElementById("container").appendChild(anchor);
+   //    var textAnchor = document.createTextNode("Elevation's Website");
+   //    anchor.appendChild(textAnchor);
+   //    var attr= document.createAttribute("href");
+   //    attr.value = "http://www.elevationacademy.co";
+   //    anchor.attributes.setNamedItem(attr)
+   </script>
+
+              else {
+               textButton= document.createTextNode("Hello world again");
+               btn.appendChild(textButton)
+           }
+
+</div>                                                                        -->
+
+<!-- <div id="container">
+
+    <script>
+        var btn = document.createElement("button");
+        document.getElementById("container").appendChild(btn);
+        var textButton = document.createTextNode("Hello World");
+        btn.appendChild(textButton);
+        var result = 0;
+        btn.onclick = function () {
+            if (result === 0) {
+                btn.innerText = "Someone push the button";
+                result = 1;
+            }
+            else {
+                btn.innerText = "Hello world";
+                result = 0;
+            }
+        };
+
+
+    </script>
+
+
+</div> -->
+
+<form>
+    Username:
+    <input type="text" id="username" placeholder="5 characters or more">
+
+    <div id="msg"></div>
+    <br> Email:
+    <input type="e-mail" id="email" placeholder="yourname@email.com">
+    <br> Password:
+    <input type="password" id="password">
+
+    <div id="msgpassword"></div>
+
+    <br> Repeat password:
+    <input type="password" id="password2">
+    <div id="msgCheckedPassword"></div>
+    <br> Phone Number:
+    <input type="number" id="phoneNum">
+    <div id="msgPhone"></div>
+    <br> Country:
+    <input type="text" id="country">
+    <div id="msgCountry"></div>
+    <br>
+    <button type="button" onclick="submitForm()">Submit</button>
+</form>
+
+<ul id="containerList"></ul>
+
+<script>
+
+
+    function userName() {
+
+        var usernameElem = document.getElementById("username");
+        var usernameValue = usernameElem.value;
+        var mensaje = document.getElementById("msg");
+
+        if (usernameValue.length < 5) {
+            return false
+        }
+        else {
+            mensaje.innerText = "";
+            return true
+        }
+
+    }
+
+    function passWord() {
+        var passwordElem = document.getElementById("password");
+        var passwordValue = passwordElem.value;
+        var mensajePassword = document.getElementById("msgpassword");
+
+        if (passwordValue.length < 6) {
+            return false
+        }
+        else {
+            mensajePassword.innerText = "";
+
+            return true
+        }
+    }
+
+    function checkPassword() {
+        var passwordElem2 = document.getElementById("password2");
+        var passwordValue2 = passwordElem2.value;
+        var passwordElem = document.getElementById("password");
+        var passwordValue = passwordElem.value;
+        var msgPasswordCheck = document.getElementById("msgCheckedPassword");
+
+        if (passwordValue2 != passwordValue) {
+            return false
+
+        }
+        else {
+            msgPasswordCheck.innerText = "";
+
+            return true
+        }
+
+    }
+
+    function country() {
+        var countryElem = document.getElementById("country");
+        var countryValue = countryElem.value;
+        var countryValueCorrected = countryValue.toLowerCase();
+        var msgCountry = document.getElementById("msgCountry");
+
+        if (countryValueCorrected == "united states" || countryValueCorrected == "israel") {
+            msgCountry.innerText = "";
+            return true
+        }
+        else {
+
+            return false
+        }
+    }
+
+    function phoneNumber() {
+        var phoneNumberElem = document.querySelector("#phoneNum");
+        var phoneNumberValue = phoneNumberElem.value;
+        var msgPhone = document.getElementById("msgPhone");
+
+        if (phoneNumberValue.length > 15) {
+            return false
+
+        }
+        else {
+            return true
+        }
+    }
+    var flag = true;
+
+    function submitForm() {
+
+        if (userName() != flag) {
+            var errorUsername = document.createElement("li");
+            document.getElementById("containerList").appendChild(errorUsername);
+            var textErrorUsername = document.createTextNode("The supplied username is too short, try again using 5 or more characters");
+            errorUsername.appendChild(textErrorUsername);
+            var attr = document.createAttribute("class");
+            attr.value = "errorMsg";
+            errorUsername.attributes.setNamedItem(attr);
+        }
+
+        else if (passWord() != flag) {
+            var errorPassword = document.createElement("li");
+            document.getElementById("containerList").appendChild(errorPassword);
+            var textErrorPassword = document.createTextNode("The supplied password is too short, try again using 6 or more characters");
+            errorPassword.appendChild(textErrorPassword);
+            var attr = document.createAttribute("class");
+            attr.value = "errorMsg";
+            errorPassword.attributes.setNamedItem(attr);
+
+        }
+
+        else if (checkPassword() != flag) {
+            var errorCheckPassword = document.createElement("li");
+            document.getElementById("containerList").appendChild(errorCheckPassword);
+            var textErrorCheckPassword = document.createTextNode("Re enter your password, both passwords should be the same");
+            errorCheckPassword.appendChild(textErrorCheckPassword);
+            var attr = document.createAttribute("class");
+            attr.value = "errorMsg";
+            errorCheckPassword.attributes.setNamedItem(attr);
+        }
+        else if (country() != flag) {
+            var errorCountry = document.createElement("li");
+            document.getElementById("containerList").appendChild(errorCountry);
+            var textErrorCountry = document.createTextNode("Just Citizens from USA and Israel");
+            errorCountry.appendChild(textErrorCountry);
+            var attr = document.createAttribute("class");
+            attr.value = "errorMsg";
+            errorCountry.attributes.setNamedItem(attr);
+        }
+        else if (phoneNumber() != flag) {
+            var errorPhoneNum = document.createElement("li");
+            document.getElementById("containerList").appendChild(errorPhoneNum);
+            var textErrorPhoneNum = document.createTextNode("Please re enter a valid phone number (less than 15 digits)");
+            errorPhoneNum.appendChild(textErrorPhoneNum);
+            var attr = document.createAttribute("class");
+            attr.value = "errorMsg";
+            errorPhoneNum.attributes.setNamedItem(attr);
+        }
+        else {
+            alert("Good news, you got it!!")
+        }
+    }
+
+</script>
+
+
+</body>
+</html>
