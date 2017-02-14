@@ -136,6 +136,13 @@
         var mensaje = document.getElementById("msg");
 
         if (usernameValue.length < 5) {
+            var errorUsername = document.createElement("li");
+            document.getElementById("containerList").appendChild(errorUsername);
+            var textErrorUsername = document.createTextNode("The supplied username is too short, try again using 5 or more characters");
+            errorUsername.appendChild(textErrorUsername);
+            var attr = document.createAttribute("class");
+            attr.value = "errorMsg";
+            errorUsername.attributes.setNamedItem(attr);
             return false
         }
         else {
@@ -151,6 +158,13 @@
         var mensajePassword = document.getElementById("msgpassword");
 
         if (passwordValue.length < 6) {
+            var errorPassword = document.createElement("li");
+            document.getElementById("containerList").appendChild(errorPassword);
+            var textErrorPassword = document.createTextNode("The supplied password is too short, try again using 6 or more characters");
+            errorPassword.appendChild(textErrorPassword);
+            var attr = document.createAttribute("class");
+            attr.value = "errorMsg";
+            errorPassword.attributes.setNamedItem(attr);
             return false
         }
         else {
@@ -168,6 +182,13 @@
         var msgPasswordCheck = document.getElementById("msgCheckedPassword");
 
         if (passwordValue2 != passwordValue) {
+            var errorCheckPassword = document.createElement("li");
+            document.getElementById("containerList").appendChild(errorCheckPassword);
+            var textErrorCheckPassword = document.createTextNode("Re enter your password, both passwords should be the same");
+            errorCheckPassword.appendChild(textErrorCheckPassword);
+            var attr = document.createAttribute("class");
+            attr.value = "errorMsg";
+            errorCheckPassword.attributes.setNamedItem(attr);
             return false
 
         }
@@ -178,6 +199,28 @@
         }
 
     }
+    function phoneNumber() {
+        var phoneNumberElem = document.querySelector("#phoneNum");
+        var phoneNumberValue = phoneNumberElem.value;
+        var msgPhone = document.getElementById("msgPhone");
+
+        if (phoneNumberValue.length > 15) {
+            var errorPhoneNum = document.createElement("li");
+            document.getElementById("containerList").appendChild(errorPhoneNum);
+            var textErrorPhoneNum = document.createTextNode("Please re enter a valid phone number (less than 15 digits)");
+            errorPhoneNum.appendChild(textErrorPhoneNum);
+            var attr = document.createAttribute("class");
+            attr.value = "errorMsg";
+            errorPhoneNum.attributes.setNamedItem(attr);
+            return false
+
+        }
+        else {
+            msgPhone.innerText = "";
+            return true
+        }
+    }
+
 
     function country() {
         var countryElem = document.getElementById("country");
@@ -190,59 +233,6 @@
             return true
         }
         else {
-
-            return false
-        }
-    }
-
-    function phoneNumber() {
-        var phoneNumberElem = document.querySelector("#phoneNum");
-        var phoneNumberValue = phoneNumberElem.value;
-        var msgPhone = document.getElementById("msgPhone");
-
-        if (phoneNumberValue.length > 15) {
-            return false
-
-        }
-        else {
-            return true
-        }
-    }
-    var flag = true;
-
-    function submitForm() {
-
-        if (userName() != flag) {
-            var errorUsername = document.createElement("li");
-            document.getElementById("containerList").appendChild(errorUsername);
-            var textErrorUsername = document.createTextNode("The supplied username is too short, try again using 5 or more characters");
-            errorUsername.appendChild(textErrorUsername);
-            var attr = document.createAttribute("class");
-            attr.value = "errorMsg";
-            errorUsername.attributes.setNamedItem(attr);
-        }
-
-        else if (passWord() != flag) {
-            var errorPassword = document.createElement("li");
-            document.getElementById("containerList").appendChild(errorPassword);
-            var textErrorPassword = document.createTextNode("The supplied password is too short, try again using 6 or more characters");
-            errorPassword.appendChild(textErrorPassword);
-            var attr = document.createAttribute("class");
-            attr.value = "errorMsg";
-            errorPassword.attributes.setNamedItem(attr);
-
-        }
-
-        else if (checkPassword() != flag) {
-            var errorCheckPassword = document.createElement("li");
-            document.getElementById("containerList").appendChild(errorCheckPassword);
-            var textErrorCheckPassword = document.createTextNode("Re enter your password, both passwords should be the same");
-            errorCheckPassword.appendChild(textErrorCheckPassword);
-            var attr = document.createAttribute("class");
-            attr.value = "errorMsg";
-            errorCheckPassword.attributes.setNamedItem(attr);
-        }
-        else if (country() != flag) {
             var errorCountry = document.createElement("li");
             document.getElementById("containerList").appendChild(errorCountry);
             var textErrorCountry = document.createTextNode("Just Citizens from USA and Israel");
@@ -250,19 +240,17 @@
             var attr = document.createAttribute("class");
             attr.value = "errorMsg";
             errorCountry.attributes.setNamedItem(attr);
+
+            return false
         }
-        else if (phoneNumber() != flag) {
-            var errorPhoneNum = document.createElement("li");
-            document.getElementById("containerList").appendChild(errorPhoneNum);
-            var textErrorPhoneNum = document.createTextNode("Please re enter a valid phone number (less than 15 digits)");
-            errorPhoneNum.appendChild(textErrorPhoneNum);
-            var attr = document.createAttribute("class");
-            attr.value = "errorMsg";
-            errorPhoneNum.attributes.setNamedItem(attr);
+    }
+
+
+    function submitForm() {
+        if (userName() === true && passWord() === true && checkPassword() === true && country() === true && phoneNumber() === true) {
+            alert("Good news, you got it!!");
         }
-        else {
-            alert("Good news, you got it!!")
-        }
+
     }
 
 </script>
